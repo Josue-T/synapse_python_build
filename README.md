@@ -24,7 +24,7 @@ apt install -y build-essential python2.7-dev libffi-dev python-pip python-setupt
 
 - Lauch the build script by this command : `bash build_pyenv.sh`
 
-- If nothing fail you should find a file named `matrix-synapse-bin-x.x.x-ARCH.tar.gz` in the same dir then your script.
+- If nothing fail you should find a file named `matrix-synapse_x.x.x-bin1_ARCH.tar.gz` in the same dir then your script.
 
 ### Troubleshotting
 

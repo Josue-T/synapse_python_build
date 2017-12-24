@@ -32,10 +32,9 @@ pip install --upgrade virtualenv
 ## Get last synapse Version
 APP_VERSION=$(curl 'https://api.github.com/repos/matrix-org/synapse/releases/latest' -H 'Host: api.github.com' --compressed | grep -m 1 '"name":' | cut -dv -f2 | cut -d\" -f1)
 
-echo $APP_VERSION > /tmp/synapse_last_build_version
-
 # Clean environnement
 rm -rf $path_to_build
+rm -r ~/.cache/pip
 
 # Enable set to be sure that all command don't fail
 set -eu

@@ -53,7 +53,8 @@ PS1=""
 source bin/activate
 
 # Install source and build binary
-pip install -I --upgrade pip
+#pip install -I --upgrade pip
+pip install -I pip==9.0.3 # Fix segfault
 pip install -I --upgrade setuptools
 pip install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
 pip install -I --upgrade https://github.com/matrix-org/synapse/archive/v$APP_VERSION.tar.gz

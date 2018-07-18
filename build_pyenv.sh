@@ -23,6 +23,12 @@ then
 	fi
 fi
 
+# Mount proc if it'isnt mouned.
+if [[ $(mount) != *"proc on /proc type proc"* ]]
+then
+	mount -t proc proc /proc
+fi
+
 # Upgrade system
 apt update
 apt dist-upgrade -y

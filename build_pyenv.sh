@@ -32,6 +32,7 @@ fi
 # Upgrade system
 apt update
 apt dist-upgrade -y
+apt install -y build-essential python2.7-dev libffi-dev python-pip python-setuptools sqlite3 libssl-dev python-virtualenv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python-lxml zlib1g-dev
 pip2 install --upgrade pip
 pip install --upgrade virtualenv
 

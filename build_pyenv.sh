@@ -32,9 +32,9 @@ fi
 # Upgrade system
 apt update
 apt dist-upgrade -y
-apt install -y build-essential python2.7-dev libffi-dev python-pip python-setuptools sqlite3 libssl-dev python-virtualenv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python-lxml zlib1g-dev
-pip2 install --upgrade pip
-pip install --upgrade virtualenv
+apt install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-virtualenv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev
+pip3 install --upgrade pip
+pip3 install --upgrade virtualenv
 
 ## Get last synapse Version
 APP_VERSION=$(curl 'https://api.github.com/repos/matrix-org/synapse/releases/latest' -H 'Host: api.github.com' --compressed | grep -m 1 '"tag_name":' | grep -o -P '(\d+\.)*\d+')
@@ -50,7 +50,7 @@ echo "Start build time : $(date)" >> Synapse_build_stat_time.log
 
 # Create new environnement
 mkdir -p $path_to_build
-virtualenv --no-site-packages --always-copy -p python2.7 $path_to_build
+python3 -m venv --copies $path_to_build
 cp activate_virtualenv_synapse $path_to_build/bin/activate
 
 # Go in virtualenv
@@ -60,11 +60,14 @@ PS1=""
 source bin/activate
 
 # Install source and build binary
-#pip install -I --upgrade pip
-pip install -I pip==9.0.3 # Fix segfault
-pip install -I --upgrade setuptools
-pip install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
-pip install -I --upgrade https://github.com/matrix-org/synapse/archive/v$APP_VERSION.tar.gz
+###### Workaroud for jessie
+# python3 -m pip install -I --upgrade pip
+# python3 -m pip install -I --upgrade pip
+######
+pip3 install -I --upgrade pip
+pip3 install -I --upgrade setuptools
+pip3 install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
+pip3 install -I --upgrade https://github.com/matrix-org/synapse/archive/v$APP_VERSION.tar.gz
 
 # Quit virtualenv
 deactivate

@@ -17,7 +17,7 @@ The build need a really clean environnement with no library in relation with `py
 
 - Install the dependance :
 ```
-apt install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-virtualenv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev
+apt install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-venv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev
 ```
 
 - Clone the git repository.
@@ -33,5 +33,5 @@ apt install -y build-essential python3-dev libffi-dev python3-pip python3-setupt
 In my case the solution to solve my issue was to type these both command to have a really clean environnement (IN CHOOT, because it could break a lot of things in production environnement) :
 ```
 apt-get autoremove --purge python-defusedxml libxml2-utils libxml-libxml-perl libxml-namespacesupport-perl docbook-xml libxml2-dev libxml2 pinentry-curses
-apt install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-virtualenv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev
+apt install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-venv libjpeg-dev libpq-dev postgresql libgcrypt11-dev libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev
 ```

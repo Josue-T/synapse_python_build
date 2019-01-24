@@ -64,7 +64,7 @@ source bin/activate
 # python3 -m pip install -I --upgrade pip
 ######
 pip3 install -I --upgrade pip
-pip3 install -I --upgrade setuptools
+pip3 install -I --upgrade setuptools wheel
 pip3 install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
 pip3 install -I --upgrade https://github.com/matrix-org/synapse/archive/v$APP_VERSION.tar.gz
 

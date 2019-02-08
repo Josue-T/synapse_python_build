@@ -66,7 +66,7 @@ source bin/activate
 pip3 install -I --upgrade pip
 pip3 install -I --upgrade setuptools wheel
 pip3 install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
-pip3 install -I --upgrade https://github.com/matrix-org/synapse/archive/v$APP_VERSION.tar.gz
+pip3 install -I --upgrade matrix-synapse==$APP_VERSION matrix-synapse-ldap3
 
 # Quit virtualenv
 deactivate

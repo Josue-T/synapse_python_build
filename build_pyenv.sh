@@ -42,14 +42,13 @@ APP_VERSION=$(curl 'https://api.github.com/repos/matrix-org/synapse/releases/lat
 
 # Clean environnement
 rm -rf $path_to_build
-rm -r ~/.cache/pip
+rm -rf ~/.cache/pip
 
 echo "Start build time : $(date)" >> Synapse_build_stat_time.log
 
 # Create new environnement
 mkdir -p $path_to_build
 python3 -m venv --copies $path_to_build
-cp activate_virtualenv_synapse $path_to_build/bin/activate
 
 # Go in virtualenv
 old_pwd="$PWD"

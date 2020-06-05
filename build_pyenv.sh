@@ -12,6 +12,7 @@ release_number="1"
 
 #################################################################
 
+# Enable set to be sure that all command don't fail
 set -eu
 
 if [[ ! "$@" =~ "chroot-yes" ]]
@@ -43,9 +44,6 @@ APP_VERSION=$(curl 'https://api.github.com/repos/matrix-org/synapse/releases/lat
 rm -rf $path_to_build
 rm -r ~/.cache/pip
 
-# Enable set to be sure that all command don't fail
-set -eu
-
 echo "Start build time : $(date)" >> Synapse_build_stat_time.log
 
 # Create new environnement
@@ -56,8 +54,7 @@ cp activate_virtualenv_synapse $path_to_build/bin/activate
 # Go in virtualenv
 old_pwd="$PWD"
 cd $path_to_build
-PS1=""
-source bin/activate
+set +u; source bin/activate; set -u
 
 # Install source and build binary
 ###### Workaroud for jessie
@@ -70,7 +67,7 @@ pip3 install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
 pip3 install -I --upgrade matrix-synapse==$APP_VERSION matrix-synapse-ldap3
 
 # Quit virtualenv
-deactivate
+set +u; deactivate; set -u
 cd ..
 
 # Build archive of binary

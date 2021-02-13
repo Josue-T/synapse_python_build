@@ -46,6 +46,13 @@ rm -rf ~/.cache/pip
 
 echo "Start build time : $(date)" >> Synapse_build_stat_time.log
 
+# Install rustup to build crytography
+if [ -z $(which rustup) ]; then
+    curl -sSf -L https://static.rust-lang.org/rustup.sh | sh -s -- -y --default-toolchain=stable
+else
+    rustup update
+fi
+
 # Create new environnement
 mkdir -p $path_to_build
 python3 -m venv --copies $path_to_build

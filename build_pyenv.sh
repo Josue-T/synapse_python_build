@@ -60,7 +60,7 @@ python3 -m venv --copies $path_to_build
 
 # Go in virtualenv
 old_pwd="$PWD"
-cd $path_to_build
+pushd $path_to_build
 set +u; source bin/activate; set -u
 
 # Install source and build binary
@@ -85,7 +85,7 @@ sha256sumarchive=$(sha256sum "$archive_name" | cut -d' ' -f1)
 
 mv "$archive_name" "$old_pwd"
 
-cd "$old_pwd"
+popd
 
 echo "Finish build time : $(date)" >> Synapse_build_stat_time.log
 echo "sha256 SUM : $sha256sumarchive"

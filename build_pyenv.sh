@@ -48,10 +48,11 @@ echo "Start build time : $(date)" >> Synapse_build_stat_time.log
 
 # Install rustup to build crytography
 if [ -z $(which rustup) ]; then
-    curl -sSf -L https://static.rust-lang.org/rustup.sh | sh -s -- -y --default-toolchain=stable
+    curl -sSf -L https://static.rust-lang.org/rustup.sh | sh -s -- -y --default-toolchain=stable --profile=minimal
 else
     rustup update
 fi
+source $HOME/.cargo/env
 
 # Create new environnement
 mkdir -p $path_to_build

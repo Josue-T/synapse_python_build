@@ -119,16 +119,44 @@ then
     # "upload_url": "https://uploads.github.com/repos/:owner/:repo/releases/:ID/assets{?name,label}",
     upload_prefix=$(echo $upload_generic | cut -d "\"" -f4 | cut -d "{" -f1)
     upload_file="$upload_prefix?name=$archive_name"
-    succ=$(curl -H "Authorization: token $perstok" \
-        -H "Content-Type: $(file -b --mime-type $archive_name)" \
-        -H "Accept: application/vnd.github.v3+json" \
-        --data-binary @$archive_name $upload_file)
 
-    download=$(echo "$succ" | egrep -o "browser_download_url.+?")  
-    if [[ $? -eq 0 ]]; then
-        echo $download | cut -d: -f2,3 | cut -d\" -f2
-    else
-        echo Upload error!
+    echo "Start uploading first file"
+    i=0
+    upload_ok=false
+    while [ $i -le 4 ]; do
+        i=$((i+1))
+        # Download file
+        set +e
+        succ=$(curl -H "Authorization: token $perstok" \
+            -H "Content-Type: $(file -b --mime-type $archive_name)" \
+            -H "Accept: application/vnd.github.v3+json" \
+            --data-binary @$archive_name $upload_file)
+        res=$?
+        set -e
+        if [ $res -ne 0 ]; then
+            echo "Curl upload failled"
+            continue
+        fi
+        echo "Upload done, check result"
+
+        set +eu
+        download=$(echo "$succ" | egrep -o "browser_download_url.+?")
+        res=$?
+        if [ $res -ne 0 ] || [ -z "$download" ]; then
+            set -eu
+            echo "Result upload error"
+            continue
+        fi
+        set -eu
+        echo "$download" | cut -d: -f2,3 | cut -d\" -f2
+        echo "Upload OK"
+        upload_ok=true
+        break
+    done
+
+    if ! $upload_ok; then
+        echo "Upload completely failed, exit"
+        exit 1
     fi
 fi
 

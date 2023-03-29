@@ -35,7 +35,7 @@ fi
 # Upgrade system
 apt-get update
 apt-get dist-upgrade -y
-apt-get install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-venv libjpeg-dev libpq-dev postgresql libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev curl
+apt-get install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-venv libjpeg-dev libpq-dev postgresql libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev curl pkg-config
 
 ## Get last synapse Version
 APP_VERSION=$(curl 'https://api.github.com/repos/matrix-org/synapse/releases/latest' -H 'Host: api.github.com' --compressed | grep -m 1 '"tag_name":' | grep -o -P '(\d+\.)*\d+')

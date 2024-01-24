@@ -38,7 +38,7 @@ apt-get dist-upgrade -y
 apt-get install -y build-essential python3-dev libffi-dev python3-pip python3-setuptools sqlite3 libssl-dev python3-venv libjpeg-dev libpq-dev postgresql libgcrypt20-dev libxml2-dev libxslt1-dev python3-lxml zlib1g-dev curl pkg-config
 
 ## Get last synapse Version
-APP_VERSION=$(curl 'https://api.github.com/repos/matrix-org/synapse/releases/latest' -H 'Host: api.github.com' --compressed | grep -m 1 '"tag_name":' | grep -o -P '(\d+\.)*\d+')
+APP_VERSION=$(curl 'https://api.github.com/repos/element-hq/synapse/releases/latest' -H 'Host: api.github.com' --compressed | grep -m 1 '"tag_name":' | grep -o -P '(\d+\.)*\d+')
 
 # Clean environnement
 rm -rf $path_to_build
@@ -98,7 +98,7 @@ if [[ "$@" =~ "push_release" ]]
 then
     ## Make a draft release json with a markdown body
     release='"tag_name": "v'$APP_VERSION'", "target_commitish": "master", "name": "v'$APP_VERSION'", '
-    body="Synapse prebuilt bin for synapse_ynh\\n=========\\nPlease refer to main matrix project for the change : https://github.com/matrix-org/synapse/releases\\n\\nSha256sum : $sha256sumarchive"
+    body="Synapse prebuilt bin for synapse_ynh\\n=========\\nPlease refer to main matrix project for the change : https://github.com/element-hq/synapse/releases\\n\\nSha256sum : $sha256sumarchive"
     body=\"$body\"
     body='"body": '$body', '
     release=$release$body

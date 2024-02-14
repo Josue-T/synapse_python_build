@@ -70,7 +70,7 @@ set +u; source bin/activate; set -u
 ######
 pip3 install -I --upgrade pip
 pip3 install -I --upgrade setuptools wheel
-pip3 install -I --upgrade cffi ndg-httpsclient psycopg2 lxml
+pip3 install -I --upgrade cffi ndg-httpsclient psycopg2 lxml jinja2
 pip3 install -I --upgrade matrix-synapse==$APP_VERSION matrix-synapse-ldap3
 pip3 freeze > $old_pwd/matrix-synapse_${APP_VERSION}-$(lsb_release --codename --short)-build${release_number}_requirement.txt
 
